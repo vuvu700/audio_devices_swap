@@ -3,9 +3,10 @@ use the next audio output device
 and change the input device to the one with close enougth physical device name
 """
 
-
+import argparse
 from typing import NamedTuple
 import difflib
+import winsound
 
 from pycaw.constants import DEVICE_STATE, EDataFlow
 from pycaw.pycaw import AudioUtilities
@@ -118,4 +119,17 @@ def main():
     showList(inputs, get_default_input_device())
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--closeness", default=0.6, type=float, help="to change the 'PHYS_NAME_CLOSENESS'")
+    parser.add_argument("--grabErrors", action="store_true", help="to force the script to show errors")
+    
+    args = parser.parse_args()
+    PHYS_NAME_CLOSENESS = args.closeness
+    try:
+        main()
+    except Exception as err:
+        winsound.Beep(1000, 500)
+        if args.grabErrors is True:
+            print(f"{err.__class__.__name__}: {err}")
+            input("press enter to exit ...")
+        raise
