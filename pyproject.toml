@@ -1,0 +1,9 @@
+[project]
+name = "audio-devices-swap"
+version = "0.1.0"
+description = "small project to swap correctly audio devices on the fly"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pycaw>=20251023",
+]
