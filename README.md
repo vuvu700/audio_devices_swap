@@ -64,9 +64,10 @@ Input devices:
 ## Configuration
 
 ### Matching Sensitivity
-```python
-PHYS_NAME_CLOSENESS = 0.6
+```bash
+python main.py --closeness 0.6
 ```
+* use a value from 0.0 to 1.0
 * Increase → stricter matching
 * Decrease → more permissive matching
 
